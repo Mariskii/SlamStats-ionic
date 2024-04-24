@@ -1,0 +1,7 @@
+{
+  "name": "slamstats",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
