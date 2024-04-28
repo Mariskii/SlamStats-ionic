@@ -1,16 +1,26 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HomePageComponent } from './player/pages/home-page/home-page.component';
+import { SearchPageComponent } from './player/pages/search-page/search-page.component';
+import { PlayerPageComponent } from './player/pages/player-page/player-page.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path:'home',
+    component:HomePageComponent
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path:'search',
+    component:SearchPageComponent
   },
+  {
+    path:'player/:id',
+    component: PlayerPageComponent
+  },
+  {
+    path:'**',
+    redirectTo: 'home'
+  }
 ];
 
 @NgModule({

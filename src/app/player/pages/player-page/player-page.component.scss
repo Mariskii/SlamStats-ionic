@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+}
+
+.player_image_container {
+  position: relative;
+}
+
+ion-buttons  {
+  position: absolute;
+  top: 1%;
+  left: 1%;
+}
+
+.player-name {
+  width: 100%;
+  background: #333;
+  color: #fff;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+.general-info {
+  background: #1f5297;
+  color: #fff;
+  width: 100%;
+  height: auto;
+  padding: 5px;
+
+  ion-col {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    text-align: justify;
+    padding: 5px;
+  }
+}
+
+img {
+  width: 100%;
+  vertical-align: middle;
+  height: 30%;
+}
+
+.horizontal-list {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.horizontal-list ion-item {
+  flex: 0 0 auto;
+}
+
+.stats {
+  &-section {
+    overflow-x: auto;
+    white-space: nowrap;
+    height: 300px;
+  }
+
+  &-header {
+    ul {
+      list-style: none;
+      display: flex;
+
+      li {
+        padding: 10px;
+        background-color: burlywood;
+        min-width: 75px;
+        width: 15vw;
+        text-align: center;
+      }
+    }
+  }
+
+  &-player {
+
+    ul {
+      list-style: none;
+      display: flex;
+
+      li {
+        min-width: 75px;
+        width: 15vw;
+        padding: 10px;
+        text-align: center;
+      }
+
+      li:nth-child(odd) {
+        background: #808080;
+      }
+    }
+  }
+}

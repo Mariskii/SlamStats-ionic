@@ -1,0 +1,16 @@
+img {
+  width: 10em;
+  height: 10em;
+}
+
+ion-item {
+  height: 10em;
+  --background: var(--ion-card-background-color);
+  --color-focused: #fff;
+  margin: 8px;
+  border-radius: 16px;
+}
+
+ion-row {
+  background: var(--ion-card-background-color);
+}

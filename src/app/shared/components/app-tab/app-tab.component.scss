@@ -1,0 +1,11 @@
+@import url('src/theme/variables.scss');
+
+ion-tab-button {
+  --color: var(--ion-tab-color);
+  --color-selected: var(--ion-tab-selected);
+}
+
+ion-tab-bar{
+  /*Color of selected*/
+  --background: var(--ion-tab-background-color);
+}
