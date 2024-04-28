@@ -1,0 +1,21 @@
+.card-container {
+  display: flex;
+  background: #333;
+  margin: 5px;
+  border-radius: 16px;
+  justify-content: space-around;
+
+
+  img {
+    max-height: 28vh;
+    max-width: 30vw;
+    margin: 10px;
+  }
+
+  h2 {
+    text-align: center;
+    align-self: center;
+    margin: 10px;
+    font-size: 1.5em;
+  }
+}

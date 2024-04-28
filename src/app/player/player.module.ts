@@ -11,6 +11,7 @@ import { PlayerPageComponent } from './pages/player-page/player-page.component';
 import {} from 'swiper/element/bundle';
 import { FormsModule } from '@angular/forms';
 import { TrophieComponent } from './components/trophie-component/trophie-component.component';
+import { PlayerTeamCardComponent } from './components/player-team-card/player-team-card.component';
 
 
 
@@ -21,7 +22,8 @@ import { TrophieComponent } from './components/trophie-component/trophie-compone
     PlayerPageComponent,
     RecomendationCardComponent,
     SearchCardComponent,
-    TrophieComponent
+    TrophieComponent,
+    PlayerTeamCardComponent,
   ],
   imports: [
     CommonModule,
