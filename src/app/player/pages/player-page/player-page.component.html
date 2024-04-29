@@ -6,38 +6,38 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/search"></ion-back-button>
     </ion-buttons>
-    <img ngSrc="https://a.espncdn.com/photo/2013/0209/nba_jordan_01.jpg" width="1000" height="100" priority>
+    <img [ngSrc]="player.fotoCompleta" priority loading="lazy">
   </div>
 
 
 
-  <h2 class="player-name">#23 Michael Jordan</h2>
+  <h2 class="player-name">#{{ player.dorsal }} {{ player.nombreCompleto | titlecase }}</h2>
 
   <ion-grid class="general-info">
     <ion-row>
       <ion-col>Posición:</ion-col>
-      <ion-col>Escolta</ion-col>
+      <ion-col>{{ player.posicion }}</ion-col>
       <ion-col>Nacimiento:</ion-col>
-      <ion-col>24/10/2004</ion-col>
+      <ion-col>{{ player.fnacimiento | date: "dd/MM/yyyy" }}</ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>Altura:</ion-col>
-      <ion-col>1.98cm</ion-col>
+      <ion-col>{{ player.altura }}Cm</ion-col>
       <ion-col>Peso:</ion-col>
-      <ion-col>93kg</ion-col>
+      <ion-col>{{ player.peso }}</ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>Nacionalidad:</ion-col>
-      <ion-col>Estadounidense</ion-col>
+      <ion-col>{{ player.nacionalidad }}</ion-col>
     </ion-row>
   </ion-grid>
 
   <div class="trophies">
     <ion-title>Premios:</ion-title>
 
-    <ion-list lines="none" class="horizontal-list">
+    <div class="horizontal-list">
       <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="11" />
       <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="6" />
       <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="6" />
@@ -45,7 +45,7 @@
       <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="6" />
       <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="6" />
       <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="6" />
-    </ion-list>
+    </div>
   </div>
 
   <!--Ion segment-->
@@ -77,25 +77,29 @@
           </ul>
         </div>
         <div class="stats-player">
-          <ul>
-            <li>1996</li>
-            <li>82</li>
-            <li>32</li>
-            <li>52%</li>
-            <li>89%</li>
-            <li>9</li>
-            <li>6</li>
-            <li>0.5</li>
-            <li>1.4</li>
-            <li>0.5</li>
-            <li>34%</li>
-          </ul>
+          @for (stats of playerStats; track $index) {
+            <ul>
+              <li>{{ stats.season }}</li>
+              <li>{{ stats.pj }}</li>
+              <li>{{ stats.ppp }}</li>
+              <li>{{ stats.tc }}%</li>
+              <li>{{ stats.tl }}%</li>
+              <li>{{ stats.rpp }}</li>
+              <li>{{ stats.app }}</li>
+              <li>{{ stats.stl }}</li>
+              <li>{{ stats.blk }}</li>
+              <li>{{ stats.pm3 }}%</li>
+              <li>{{ stats.perc3 }}%</li>
+            </ul>
+            }
         </div>
       </div>
     }
     @case ('teams') {
       <div class="teams-section">
-        <player-team-card teamLogo="https://i.pinimg.com/originals/a1/59/0c/a1590c9c034c0c8b4d12423e723b412c.png" teamName="Washington Wizards"/>
+        @for (team of playerTeams; track $index) {
+          <player-team-card [teamName]="team.nombreEquipo" [teamLogo]="team.imagenEquipo" />
+        }
       </div>
     }
   }

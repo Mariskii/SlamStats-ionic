@@ -1,11 +1,20 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
 :root {
+
+
   /*Tab*/
-  --ion-tab-background-color: #014f86;
-  --ion-tab-color: #013a63;
-  --ion-tab-selected: #89c2d9;
+  --ion-tab-background-color: #4779c4;
+  --ion-tab-color: #1b2d48;
+  --ion-tab-selected: #83aff0;
 
   /*Card of search*/
-  --ion-card-background-color: #014f86;
+  --ion-card-background-color: #1f5297;
+
+  --ion-main-color:#1b2d48;
+  --ion-secondary-color:#2c456b;
+  --ion-terciary-color:#3c649f;
+  --ion-hover-color:#4779c4;
+  --ion-selected-color:#83aff0;
+
 }

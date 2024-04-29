@@ -14,7 +14,7 @@ export class PlayerService {
 
   constructor(private httpClient: HttpClient) { }
 
-  searchPlayerById(id: number):Observable<Player> {
+  getPlayerById(id: number):Observable<Player> {
     return this.httpClient.get<Player>(`${environment.API_URL}/players/${id}`);
   }
 

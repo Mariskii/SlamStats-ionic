@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  API_URL:'https://test-production-6b7f.up.railway.app/slamstats'
+  API_URL:'https://marisko-production.up.railway.app/slamstats'
 };

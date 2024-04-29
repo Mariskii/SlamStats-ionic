@@ -12,6 +12,7 @@ import {} from 'swiper/element/bundle';
 import { FormsModule } from '@angular/forms';
 import { TrophieComponent } from './components/trophie-component/trophie-component.component';
 import { PlayerTeamCardComponent } from './components/player-team-card/player-team-card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -31,6 +32,7 @@ import { PlayerTeamCardComponent } from './components/player-team-card/player-te
     IonicModule,
     NgOptimizedImage,
     FormsModule,
+    HttpClientModule,
     ]
 })
 export class PlayerModule { }

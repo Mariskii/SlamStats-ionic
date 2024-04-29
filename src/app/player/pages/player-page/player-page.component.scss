@@ -14,7 +14,7 @@ ion-buttons  {
 
 .player-name {
   width: 100%;
-  background: #333;
+  background: var(--ion-main-color);
   color: #fff;
   margin: 0;
   padding: 10px;
@@ -22,7 +22,7 @@ ion-buttons  {
 }
 
 .general-info {
-  background: #1f5297;
+  background: var(--ion-card-background-color);
   color: #fff;
   width: 100%;
   height: auto;
@@ -39,18 +39,41 @@ ion-buttons  {
 img {
   width: 100%;
   vertical-align: middle;
-  height: 30%;
+  height: 30vh;
+
+  // view-timeline-name: --image;
+  // view-timeline-axis: block;
+  // animation-timeline: --image;
+  // animation-name: show;
+}
+
+.trophies {
+  background: var(--ion-secondary-color);
 }
 
 .horizontal-list {
   display: flex;
   overflow-x: auto;
   white-space: nowrap;
+  background: var(--ion-secondary-color);
 }
 
-.horizontal-list ion-item {
-  flex: 0 0 auto;
+ion-segment {
+  --background:var(--ion-main-color);
+  color: #fff;
 }
+
+// ion-segment-button.md::part(indicator-background) {
+//   height: 5px;
+
+//   border-radius: 16px;
+//   margin: 5px;
+// }
+
+.segment-button-checked.md::part(native) {
+  color: var(--ion-selected-color);
+}
+
 
 .stats {
   &-section {
@@ -66,7 +89,7 @@ img {
 
       li {
         padding: 10px;
-        background-color: burlywood;
+        background-color: #FF7F50;
         min-width: 75px;
         width: 15vw;
         text-align: center;
@@ -95,5 +118,16 @@ img {
 }
 
 .teams-section {
+  overflow-x: auto;
+  white-space: nowrap;
   height: 300px;
 }
+
+// @keyframes show {
+//   from {
+//     scale: 100%;
+//   }
+//   to {
+//     scale: 0%;
+//   }
+// }
