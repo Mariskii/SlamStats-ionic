@@ -18,6 +18,10 @@ export class PlayerService {
     return this.httpClient.get<Player>(`${environment.API_URL}/players/${id}`);
   }
 
+  getPlayersByName(term: string):Observable<Player[]> {
+    return this.httpClient.get<Player[]>(`${environment.API_URL}/players`,{params: {"nombre":term} })
+  }
+
   getPlayerTeamsById(id: number):Observable<PlayerTeam[]> {
     return this.httpClient.get<PlayerTeam[]>(`${environment.API_URL}/players/${id}/teams`);
   }

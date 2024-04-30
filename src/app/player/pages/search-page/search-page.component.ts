@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Player } from '../../models/player.interface';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'app-search-page',
@@ -49,7 +50,7 @@ export class SearchPageComponent  implements OnInit {
 
   players:Player[] = [];
 
-  constructor() { }
+  constructor(private playerService: PlayerService) { }
 
   ngOnInit() {}
 
@@ -57,10 +58,12 @@ export class SearchPageComponent  implements OnInit {
   searchByName(event:any) {
     const name = event.target.value.toLowerCase();
 
-    this.playersData.filter((d) => {
-      if(d.nombreCompleto.toLowerCase().includes(name)){
-        this.players.push(d);
-      }
-    })
+    // this.playersData.filter((d) => {
+    //   if(d.nombreCompleto.toLowerCase().includes(name)){
+    //     this.players.push(d);
+    //   }
+    // })
+
+    this.playerService.getPlayersByName(name).subscribe(resultPlayers => this.players = resultPlayers);
   }
 }
