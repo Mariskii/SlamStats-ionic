@@ -1,5 +1,5 @@
 export interface PlayerTrophies {
-  id:      number;
+  //id:      number;
   anillos: number;
   fmvp:    number;
   mvp:     number;

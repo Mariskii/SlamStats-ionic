@@ -29,7 +29,15 @@ export class PlayerPageComponent  implements OnInit {
     fotoCompleta:   'https://tse2.mm.bing.net/th?id=OIP.COim6Jrrs0tXxo8chzO1twHaE7&pid=Api&P=0&h=180',
     fnacimiento:    new Date(),
   };
-  playerTrophies!: PlayerTrophies;
+  playerTrophies: PlayerTrophies = {
+    //id:      1,
+    anillos: 1,
+    fmvp:    1,
+    mvp:     1,
+    allstar: 0,
+    dpoy:    1,
+    roy:     1,
+  };
   playerStats!: PlayerStats[];
   playerTeams!: PlayerTeam[];
 
@@ -41,7 +49,7 @@ export class PlayerPageComponent  implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-
+    this.getTrophies()
     this.activatedRoute.params.subscribe(({id}) => {
       this.getPlayerData(id);
       this.loading = false;
@@ -52,5 +60,10 @@ export class PlayerPageComponent  implements OnInit {
     this.playerService.getPlayerById(id).subscribe(player => this.player = player);
     this.playerService.getPlayerTeamsById(id).subscribe(teams => this.playerTeams = teams);
     this.playerService.getPlayerStatsById(id).subscribe(stats => this.playerStats = stats);
+    this.playerService.getPlayerTrophiesById(id).subscribe(trophoies => this.playerTrophies = trophoies);
+  }
+
+  getTrophies() {
+    this.playerTrophies
   }
 }

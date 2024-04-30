@@ -6,7 +6,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/search"></ion-back-button>
     </ion-buttons>
-    <img [ngSrc]="player.fotoCompleta" priority loading="lazy">
+    <img [ngSrc]="player.fotoCompleta" priority width="1000" height="800">
   </div>
 
 
@@ -38,13 +38,25 @@
     <ion-title>Premios:</ion-title>
 
     <div class="horizontal-list">
-      <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="11" />
-      <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="6" />
-      <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="6" />
-      <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="6" />
-      <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="6" />
-      <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="6" />
-      <trophie-component trophieImage="https://i.pinimg.com/originals/4c/bd/84/4cbd84f6841df51b636fa7c3ca7aecbd.png" trophieQuantity="6" />
+      @if (playerTrophies.anillos) {
+        <trophie-component trophieImage="../../../../assets/trophies-icons/anillos.svg" trophieQuantity="x{{ playerTrophies.anillos.toString() }}" />
+      }
+      @if (playerTrophies.fmvp) {
+        <trophie-component trophieImage="../../../../assets/trophies-icons/fmvp.svg" trophieQuantity="x{{ playerTrophies.fmvp.toString() }}" />
+      }
+      @if (playerTrophies.allstar) {
+        <trophie-component trophieImage="../../../../assets/trophies-icons/allStar.svg" trophieQuantity="x{{ playerTrophies.allstar.toString() }}" />
+      }
+      @if (playerTrophies.mvp) {
+        <trophie-component trophieImage="../../../../assets/trophies-icons/mvp.png" trophieQuantity="x{{ playerTrophies.mvp.toString() }}" />
+      }
+      @if (playerTrophies.dpoy) {
+        <trophie-component trophieImage="../../../../assets/trophies-icons/dpoy.png" trophieQuantity="x{{ playerTrophies.dpoy.toString() }}" />
+      }
+      @if (playerTrophies.roy) {
+        <trophie-component trophieImage="../../../../assets/trophies-icons/roy.png"/>
+      }
+
     </div>
   </div>
 

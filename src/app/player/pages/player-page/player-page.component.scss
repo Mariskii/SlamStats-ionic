@@ -40,11 +40,6 @@ img {
   width: 100%;
   vertical-align: middle;
   height: 30vh;
-
-  // view-timeline-name: --image;
-  // view-timeline-axis: block;
-  // animation-timeline: --image;
-  // animation-name: show;
 }
 
 .trophies {
@@ -56,6 +51,7 @@ img {
   overflow-x: auto;
   white-space: nowrap;
   background: var(--ion-secondary-color);
+  min-height: 15vh;
 }
 
 ion-segment {
@@ -122,12 +118,3 @@ ion-segment {
   white-space: nowrap;
   height: 300px;
 }
-
-// @keyframes show {
-//   from {
-//     scale: 100%;
-//   }
-//   to {
-//     scale: 0%;
-//   }
-// }
