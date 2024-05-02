@@ -1,0 +1,29 @@
+<ion-content>
+
+  <ion-icon name="close-outline" size="large" (click)="cancel()"/>
+
+  <div class="form">
+
+    <div class="inputs">
+      <h1>Iniciar sesión</h1>
+
+      <ion-input [(ngModel)]="userName" label="Nombre de usuario" label-placement="floating" fill="outline" placeholder="Nombre de usuario"/>
+
+      <ion-input [(ngModel)]="passwd" label="Contraseña" type="password" label-placement="floating" fill="outline" placeholder="Introducir contraseña">
+
+        <ion-button fill="clear" slot="end" aria-label="Show/hide">
+          <ion-icon slot="icon-only" name="eye" aria-hidden="true"></ion-icon>
+        </ion-button>
+
+      </ion-input>
+
+      <p>{{ errorMessage | titlecase }}</p>
+
+      <div class="user-options">
+        <ion-button (click)="login()">Iniciar Sesión</ion-button>
+        <p>¿Ya tienes una cuenta?<strong> Registrate</strong></p>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

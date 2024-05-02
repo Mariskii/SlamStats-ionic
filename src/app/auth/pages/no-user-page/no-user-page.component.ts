@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { LoginPageComponent } from '../login-page/login-page.component';
 
 @Component({
   selector: 'app-no-user-page',
@@ -7,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoUserPageComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private modalControler:ModalController) { }
 
   ngOnInit() {}
 
+  async openModal() {
+    const modal = await this.modalControler.create({
+      component: LoginPageComponent,
+    });
+
+    await modal.present();
+  }
 }
