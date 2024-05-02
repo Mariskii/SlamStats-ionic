@@ -56,14 +56,21 @@ export class SearchPageComponent  implements OnInit {
 
 
   searchByName(event:any) {
-    const name = event.target.value.toLowerCase();
+    const name:string = event.target.value.toLowerCase();
 
     // this.playersData.filter((d) => {
     //   if(d.nombreCompleto.toLowerCase().includes(name)){
     //     this.players.push(d);
     //   }
     // })
+    if(name.length > 2) {
+      this.playerService.getPlayersByName(name).subscribe(resultPlayers => this.players = resultPlayers);
+    }
+  }
 
-    this.playerService.getPlayersByName(name).subscribe(resultPlayers => this.players = resultPlayers);
+  clearPlayersSearched() {
+    this.players = [];
+
+    return true;
   }
 }
