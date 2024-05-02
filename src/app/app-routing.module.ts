@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./player/pages/search-page/search-page.module').then(m => m.SearchPageModule)
   },
   {
+    path:'user',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path:'**',
     redirectTo: 'home'
   }
