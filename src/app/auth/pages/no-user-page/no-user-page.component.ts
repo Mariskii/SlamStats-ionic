@@ -13,9 +13,12 @@ export class NoUserPageComponent  implements OnInit {
 
   ngOnInit() {}
 
-  async openModal() {
+  async openModal(formInfo: string) {
     const modal = await this.modalControler.create({
       component: LoginPageComponent,
+      componentProps: {
+        formContent: formInfo
+      }
     });
 
     await modal.present();

@@ -10,6 +10,7 @@
 
         <form [formGroup]="loginForm" (ngSubmit)="login()">
           <ion-input
+            id="userName"
             formControlName="userName"
             errorText="El campo no puede ser vacío"
             label="Nombre de usuario"
@@ -18,6 +19,7 @@
             placeholder="Nombre de usuario"/>
 
           <ion-input
+            id="password"
             formControlName="password"
             errorText="El campo no puede ser vacío"
             label="Contraseña"
@@ -95,7 +97,7 @@
 
           </ion-input>
 
-          <p class="error-message">{{ errorMessage | titlecase }}</p>
+          <p class="error-message">{{ errorMessage }}</p>
 
           <div class="user-options">
             <ion-button type="submit">Registrarse</ion-button>

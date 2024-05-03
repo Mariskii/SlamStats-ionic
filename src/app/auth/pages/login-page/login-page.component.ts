@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { catchError } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -33,13 +33,12 @@ export class LoginPageComponent  implements OnInit {
   constructor(
     private fb: FormBuilder,
     private modalCtrl: ModalController,
-    private authService: AuthService
+    private authService: AuthService,
+    private navParams: NavParams
   ) { }
 
-  ngOnInit() {}
-
-  cancel() {
-    return this.modalCtrl.dismiss(null, 'cancel');
+  ngOnInit() {
+    this.formContent = this.navParams.get('formContent');
   }
 
   login() {
@@ -47,7 +46,7 @@ export class LoginPageComponent  implements OnInit {
     if(this.loginForm.valid) {
 
       this.authService.login(this.loginForm.get('userName')!.value, this.loginForm.get('password')!.value).pipe(
-        catchError(error => this.errorMessage = error.message)
+        catchError(error => this.errorMessage = error.error.message)
       ).subscribe();
 
     }
@@ -58,7 +57,25 @@ export class LoginPageComponent  implements OnInit {
     if(this.registerForm.valid) {
       if(this.registerForm.get('password')!.value === this.registerForm.get('password2')!.value) {
         //TODO: IMPLEMENT REGISTER AT THE SERVICE
-        this.login();
+        this.authService.register({
+          nombreUsuario: this.registerForm.get('userName')!.value,
+          correo: this.registerForm.get('email')!.value,
+          passwd: this.registerForm.get('password')!.value
+        }).pipe(
+          catchError(error => this.errorMessage = error.error.message)
+        ).subscribe(
+          // (response: any) => {
+          //   console.log(response);
+          // },
+          // (error: any) => {
+          //   console.error(error);
+          //   if (error.error && error.error.message) {
+          //     this.errorMessage = error.error.message;
+          //   } else {
+          //     this.errorMessage = 'Error desconocido';
+          //   }
+          // }
+        );
       } else {
         this.errorMessage = 'Las contraseñas no coinciden';
       }
@@ -75,4 +92,9 @@ export class LoginPageComponent  implements OnInit {
       this.registerForm.reset();
     }
   }
+
+  cancel() {
+    return this.modalCtrl.dismiss(null, 'cancel');
+  }
+
 }

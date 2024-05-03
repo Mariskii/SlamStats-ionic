@@ -1,8 +1,9 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserLogged } from '../models/user.interface';
 import { environment } from 'src/environments/environment';
-import { Observable, catchError, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { UserCreate } from '../models/create-user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,12 @@ export class AuthService {
 
     return this.httpClient.get<UserLogged>(`${environment.API_URL}/user/login`,{params}).pipe(
       tap(userLogin => this.user=userLogin)
+    );
+  }
+
+  register (user:UserCreate) {
+    return this.httpClient.post<UserCreate>(`${environment.API_URL}/user/register`, user).pipe(
+      tap(async ({nombreUsuario,passwd}) => await this.login(nombreUsuario,passwd))
     );
   }
 }
