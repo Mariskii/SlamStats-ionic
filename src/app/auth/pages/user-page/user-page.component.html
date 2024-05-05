@@ -1,3 +1,27 @@
-<p>
-  user-page works!
-</p>
+<ion-content>
+  <div class="user-content">
+
+    <div class="user-welcome">
+      <strong>Bienvenido,</strong>
+      <h1> {{ user?.nombreUsuario }}</h1>
+    </div>
+
+    <div class="fav-players">
+
+      <h2 class="fav-players-title">Jugadores favoritos</h2>
+
+      @if(!favPlayers) {
+        <p class="no-content-message">No hay jugadores favoritos</p>
+      } @else {
+
+        <div class="list-players">
+          @for (player of favPlayers; track $index) {
+            <player-search-card [imageURL]="player.fotoCabeza" [name]="player.nombreCompleto"/>
+          }
+        </div>
+
+      }
+
+    </div>
+  </div>
+</ion-content>

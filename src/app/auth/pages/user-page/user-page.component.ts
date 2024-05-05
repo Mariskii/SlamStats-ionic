@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { UserLogged } from '../../models/user.interface';
+import { Player } from 'src/app/player/models/player.interface';
 
 @Component({
   selector: 'app-user-page',
@@ -7,8 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPageComponent  implements OnInit {
 
-  constructor() { }
+  user?:UserLogged;
+  favPlayers?:Player[];
 
-  ngOnInit() {}
+  constructor(private authService:AuthService) { }
+
+  ngOnInit() {
+    this.user = this.authService.user;
+    this.authService.getFavoritePlayers().subscribe(players => this.favPlayers = players);
+  }
 
 }

@@ -4,6 +4,7 @@ import { UserLogged } from '../models/user.interface';
 import { environment } from 'src/environments/environment';
 import { Observable, tap } from 'rxjs';
 import { UserCreate } from '../models/create-user.interface';
+import { Player } from 'src/app/player/models/player.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class AuthService {
     return this.httpClient.post<UserCreate>(`${environment.API_URL}/user/register`, user).pipe(
       tap(async ({nombreUsuario,passwd}) => await this.login(nombreUsuario,passwd))
     );
+  }
+
+  getFavoritePlayers():Observable<Player[]> {
+    return this.httpClient.get<Player[]>(`${environment.API_URL}/user/${this.user?.id}/favoritePlayers`);
   }
 }

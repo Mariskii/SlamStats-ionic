@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
-import { catchError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -11,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPageComponent  implements OnInit {
 
-  formContent:string = 'login';
+  formContent!:string;
 
   public loginForm: FormGroup = this.fb.group({
     userName: ['',[Validators.required]],
@@ -34,21 +35,24 @@ export class LoginPageComponent  implements OnInit {
     private fb: FormBuilder,
     private modalCtrl: ModalController,
     private authService: AuthService,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.formContent = this.navParams.get('formContent');
   }
 
-  login() {
+  async login() {
 
     if(this.loginForm.valid) {
 
-      this.authService.login(this.loginForm.get('userName')!.value, this.loginForm.get('password')!.value).pipe(
-        catchError(error => this.errorMessage = error.error.message)
-      ).subscribe();
-
+      await this.authService.login(this.loginForm.get('userName')!.value, this.loginForm.get('password')!.value).pipe(
+        catchError(error => {this.errorMessage = error.error.message;return throwError(() => error);})
+      ).subscribe( () => {
+        this.router.navigate(['./user']);
+        this.cancel();
+      });
     }
 
   }
