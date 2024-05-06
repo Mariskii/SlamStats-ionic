@@ -2,14 +2,22 @@
   margin: 0;
 }
 
-.player_image_container {
+.player-buttons {
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-ion-buttons  {
-  position: absolute;
+.back-button  {
   top: 1%;
   left: 1%;
+}
+
+.star-favorite {
+  top: 1%;
+  right: 1%;
+  margin-right: 10px;
 }
 
 .player-name {
@@ -113,4 +121,14 @@ ion-segment {
   overflow-x: auto;
   white-space: nowrap;
   height: 300px;
+}
+
+.star-favorite {
+
+  transition: all 0.1s;
+
+  &:active {
+    scale: (0.7);
+    transform: translateY(4px);
+  }
 }

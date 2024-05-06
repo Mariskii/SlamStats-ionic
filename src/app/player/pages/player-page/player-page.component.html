@@ -4,10 +4,9 @@
 
   @if(!loading) {
 
-    <div class="player_image_container">
-      <ion-buttons slot="start">
-        <ion-back-button defaultHref="/search"></ion-back-button>
-      </ion-buttons>
+    <div class="player-buttons">
+      <ion-back-button class="back-button" defaultHref="/search"/>
+      <ion-icon (click)="favorite()" class="star-favorite" size="large" [name]="isFavorite? 'star-outline' : 'star'"/>
     </div>
 
     <img [ngSrc]="player?.fotoCompleta || '../../../../assets/trophies-icons/anillos.svg'" priority placeholder>

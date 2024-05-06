@@ -5,6 +5,7 @@ import { PlayerTrophies } from '../../models/player-trphies.interface';
 import { PlayerStats } from '../../models/player-stats.interface';
 import { PlayerTeam } from '../../models/player-team.interface';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-player-page',
@@ -16,6 +17,8 @@ export class PlayerPageComponent  implements OnInit {
   loading: boolean = true;
   status: string = 'stats';
 
+  isFavorite:boolean = false;
+
   player?: Player;
   playerTrophies?: PlayerTrophies;
   playerStats?: PlayerStats[];
@@ -24,6 +27,7 @@ export class PlayerPageComponent  implements OnInit {
   constructor(
     private playerService:PlayerService,
     private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
   ) {}
 
 
@@ -39,5 +43,14 @@ export class PlayerPageComponent  implements OnInit {
     await this.playerService.getPlayerStatsById(id).subscribe(stats => this.playerStats = stats);
     await this.playerService.getPlayerTrophiesById(id).subscribe(trophoies => this.playerTrophies = trophoies);
     this.loading = false;
+  }
+
+  favorite() {
+    if(this.isFavorite) {
+      this.isFavorite = false;
+    }
+    else {
+      this.isFavorite = true;
+    }
   }
 }
