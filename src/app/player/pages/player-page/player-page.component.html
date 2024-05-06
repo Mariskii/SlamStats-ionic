@@ -9,7 +9,7 @@
       <ion-icon (click)="favorite()" class="star-favorite" size="large" [name]="isFavorite? 'star-outline' : 'star'"/>
     </div>
 
-    <img [ngSrc]="player?.fotoCompleta || '../../../../assets/trophies-icons/anillos.svg'" priority placeholder>
+    <img [ngSrc]="player?.fotoCompleta || '../../../../assets/trophies-icons/anillos.svg'" priority>
 
     <h2 class="player-name">#{{ player?.dorsal }} {{ player?.nombreCompleto | titlecase }}</h2>
 
