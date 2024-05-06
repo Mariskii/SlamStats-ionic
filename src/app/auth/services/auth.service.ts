@@ -34,6 +34,10 @@ export class AuthService {
     );
   }
 
+  logout() {
+    this.user = undefined;
+  }
+
   getFavoritePlayers():Observable<Player[]> {
     return this.httpClient.get<Player[]>(`${environment.API_URL}/user/${this.user?.id}/favoritePlayers`);
   }

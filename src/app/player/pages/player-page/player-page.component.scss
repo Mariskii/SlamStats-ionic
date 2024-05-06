@@ -59,13 +59,6 @@ ion-segment {
   color: #fff;
 }
 
-// ion-segment-button.md::part(indicator-background) {
-//   height: 5px;
-
-//   border-radius: 16px;
-//   margin: 5px;
-// }
-
 .segment-button-checked.md::part(native) {
   color: var(--ion-selected-color);
 }
@@ -73,9 +66,11 @@ ion-segment {
 
 .stats {
   &-section {
-    overflow-x: auto;
+
     white-space: nowrap;
     height: 300px;
+    overflow-x: auto;
+    position: relative;
   }
 
   &-header {
@@ -83,10 +78,11 @@ ion-segment {
       list-style: none;
       display: flex;
 
+
       li {
         padding: 10px;
         background-color: #FF7F50;
-        min-width: 75px;
+        min-width: 90px;
         width: 15vw;
         text-align: center;
       }
@@ -100,7 +96,7 @@ ion-segment {
       display: flex;
 
       li {
-        min-width: 75px;
+        min-width: 90px;
         width: 15vw;
         padding: 10px;
         text-align: center;
