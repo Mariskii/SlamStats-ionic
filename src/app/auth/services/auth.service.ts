@@ -19,7 +19,6 @@ export class AuthService {
 
     let params = new HttpParams();
 
-    // Begin assigning parameters
     params = params.append('userName', userName);
     params = params.append('passwd', passwd);
 

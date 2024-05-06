@@ -2,9 +2,13 @@
 
   <ion-searchbar [debounce]="1000" (ionInput)="searchByName($event)" (ionClear)="clearPlayersSearched()" animated="true" placeholder="Buscar jugadores..."/>
 
-  <ion-list>
-    @for(player of players; track $index){
-      <player-search-card [name]="player.nombreCompleto" [imageURL]="player.fotoCabeza" [routerLink]="['player',player.id]" />
-    }
-  </ion-list>
+  @if (!loading) {
+    <ion-list>
+      @for(player of players; track $index){
+        <player-search-card [name]="player.nombreCompleto" [imageURL]="player.fotoCabeza" [routerLink]="['player',player.id]" />
+      }
+    </ion-list>
+  } @else {
+    <app-loader/>
+  }
 </ion-content>

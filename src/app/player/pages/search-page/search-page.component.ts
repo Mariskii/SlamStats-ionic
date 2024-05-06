@@ -9,6 +9,8 @@ import { PlayerService } from '../../services/player.service';
 })
 export class SearchPageComponent  implements OnInit {
 
+  loading:boolean = false;
+
   playersData: Player[] = [
     {
       id: 1,
@@ -64,7 +66,11 @@ export class SearchPageComponent  implements OnInit {
     //   }
     // })
     if(name.length > 2) {
-      this.playerService.getPlayersByName(name).subscribe(resultPlayers => this.players = resultPlayers);
+      this.loading = true;
+      this.playerService.getPlayersByName(name).subscribe(resultPlayers => {
+        this.players = resultPlayers;
+        this.loading = false;
+      });
     }
   }
 

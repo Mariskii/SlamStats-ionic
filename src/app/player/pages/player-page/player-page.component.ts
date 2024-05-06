@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Player } from '../../models/player.interface';
 import { PlayerService } from '../../services/player.service';
 import { PlayerTrophies } from '../../models/player-trphies.interface';
@@ -6,6 +6,9 @@ import { PlayerStats } from '../../models/player-stats.interface';
 import { PlayerTeam } from '../../models/player-team.interface';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { AlertController } from '@ionic/angular';
+import { delay } from 'rxjs';
+import { PlayerCache } from '../../models/player-cache.interface';
 
 @Component({
   selector: 'app-player-page',
@@ -28,29 +31,66 @@ export class PlayerPageComponent  implements OnInit {
     private playerService:PlayerService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
+    private alertController: AlertController,
   ) {}
 
-
   ngOnInit() {
-    this.activatedRoute.params.subscribe(({id}) => {
-      this.getPlayerData(id);
+
+    if(!this.player) {
+      this.activatedRoute.params.subscribe(({id}) => {
+        this.playerService.getPlayerData(id).subscribe((data: PlayerCache) => {
+          this.player = data.player;
+          this.playerTrophies = data.trophies;
+          this.playerStats = data.stats;
+          this.playerTeams = data.teams;
+          this.loading = false;
+        });
+      });
+    }
+  }
+
+  toggleFavorite() {
+    if(this.authService.user) {
+
+      if(this.isFavorite) {
+
+        this.playerService.deleteFavorite(this.player!.id).subscribe((response:any) => {
+
+
+          if(response.status === 'CREATED') {
+            this.isFavorite = false;
+          } else {
+            this.presentAlert('Ha ocurrido un error','No se ha podido eliminar de favoritos')
+          }
+
+        });
+
+      }
+      else {
+        this.playerService.addFavorite(this.player!.id).subscribe((response:any) => {
+
+          if(response.status === 'CREATED') {
+            this.isFavorite = true;
+          } else {
+            this.presentAlert('Ha ocurrido un error','No se ha podido añadir a favoritos')
+          }
+
+        });
+
+      }
+
+    } else {
+      this.presentAlert('Acción restringida', 'Para añadir un jugador a favoritos debes iniciar sesión');
+    }
+  }
+
+  async presentAlert(alertHeader:string, alertMessage: string) {
+    const alert = await this.alertController.create({
+      header: alertHeader,
+      message: alertMessage,
+      buttons: ['Ok'],
     });
-  }
 
-  async getPlayerData(id: number) {
-    await this.playerService.getPlayerById(id).subscribe(player => this.player = player);
-    await this.playerService.getPlayerTeamsById(id).subscribe(teams => this.playerTeams = teams);
-    await this.playerService.getPlayerStatsById(id).subscribe(stats => this.playerStats = stats);
-    await this.playerService.getPlayerTrophiesById(id).subscribe(trophoies => this.playerTrophies = trophoies);
-    this.loading = false;
-  }
-
-  favorite() {
-    if(this.isFavorite) {
-      this.isFavorite = false;
-    }
-    else {
-      this.isFavorite = true;
-    }
+    await alert.present();
   }
 }
