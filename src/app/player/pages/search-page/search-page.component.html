@@ -4,17 +4,21 @@
 
   @if (players !== undefined || searchTerm.length > 1) {
     @if (!loading) {
-      @if (players?.length !== 0) {
-        <ion-list>
-          @for(player of players; track $index){
-            <player-search-card [name]="player.nombreCompleto" [imageURL]="player.fotoCabeza" [routerLink]="['player',player.id]" />
-          }
-        </ion-list>
+      @if(!errorHappened) {
+        @if (players?.length !== 0) {
+          <ion-list>
+            @for(player of players; track $index){
+              <player-search-card [name]="player.nombreCompleto" [imageURL]="player.fotoCabeza" [routerLink]="['player',player.id]" />
+            }
+          </ion-list>
+        } @else {
+          <div class="not-found-info">
+            <h1>Vaya...</h1>
+            <p class="secondary-text">No se han encontrado resultados con este termino</p>
+          </div>
+        }
       } @else {
-        <div class="not-found-info">
-          <h1>Vaya...</h1>
-          <p class="secondary-text">No se han encontrado resultados con este termino</p>
-        </div>
+        <app-retry-button (click)="fetchPlayers()"/>
       }
     } @else {
       <app-loader/>

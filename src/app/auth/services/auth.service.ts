@@ -25,11 +25,12 @@ export class AuthService {
     return this.httpClient.get<UserLogged>(`${environment.API_URL}/user/login`,{params}).pipe(
       tap(userLogin => this.user=userLogin),
     );
+
   }
 
   register (user:UserCreate) {
     return this.httpClient.post<UserCreate>(`${environment.API_URL}/user/register`, user).pipe(
-      tap(async ({nombreUsuario,passwd}) => await this.login(nombreUsuario,passwd))
+      tap(({nombreUsuario,passwd}) => this.login(nombreUsuario,passwd))
     );
   }
 

@@ -46,6 +46,9 @@ export class PlayerPageComponent  implements OnInit {
   toggleFavorite() {
     if(this.authService.user) {
 
+      console.log(this.authService.user);
+
+
       if(this.isFavorite) {
 
         this.playerService.deleteFavorite(this.player!.id).subscribe((response:any) => {
@@ -85,7 +88,13 @@ export class PlayerPageComponent  implements OnInit {
   }
 
   fetchPlayerData() {
+
     this.activatedRoute.params.subscribe(({id}) => {
+
+      if(this.authService.user) {
+        this.playerService.isFavoritePlayer(id).subscribe(value => this.isFavorite = value);
+      }
+
       this.playerService.getPlayerData(id).pipe(
 
         catchError(err => {
