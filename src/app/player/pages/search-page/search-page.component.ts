@@ -11,46 +11,9 @@ export class SearchPageComponent  implements OnInit {
 
   loading:boolean = false;
 
-  playersData: Player[] = [
-    {
-      id: 1,
-      nombreCompleto: 'Lionel Messi',
-      nacionalidad: 'Argentino',
-      altura: '1.70 m',
-      peso: '72 kg',
-      posicion: 'Delantero',
-      dorsal: '10',
-      fotoCabeza: 'https://cdn.nba.com/headshots/nba/latest/1040x760/893.png',
-      fotoCompleta: 'url/to/messi-full.jpg',
-      fnacimiento: new Date('1987-06-24')
-    },
-    {
-      id: 2,
-      nombreCompleto: 'Cristiano Ronaldo',
-      nacionalidad: 'Portugués',
-      altura: '1.87 m',
-      peso: '83 kg',
-      posicion: 'Delantero',
-      dorsal: '7',
-      fotoCabeza: 'https://cdn.nba.com/headshots/nba/latest/1040x760/893.png',
-      fotoCompleta: 'url/to/ronaldo-full.jpg',
-      fnacimiento: new Date('1985-02-05')
-    },
-    {
-      id: 3,
-      nombreCompleto: 'Neymar Jr',
-      nacionalidad: 'Brasileño',
-      altura: '1.75 m',
-      peso: '68 kg',
-      posicion: 'Delantero',
-      dorsal: '10',
-      fotoCabeza: 'https://cdn.nba.com/headshots/nba/latest/1040x760/893.png',
-      fotoCompleta: 'url/to/neymar-full.jpg',
-      fnacimiento: new Date('1992-02-05')
-    },
-  ];
+  searchTerm:string='';
 
-  players:Player[] = [];
+  players?:Player[];
 
   constructor(private playerService: PlayerService) { }
 
@@ -58,16 +21,13 @@ export class SearchPageComponent  implements OnInit {
 
 
   searchByName(event:any) {
-    const name:string = event.target.value.toLowerCase();
+    this.searchTerm = event.target.value.toLowerCase();
 
-    // this.playersData.filter((d) => {
-    //   if(d.nombreCompleto.toLowerCase().includes(name)){
-    //     this.players.push(d);
-    //   }
-    // })
-    if(name.length > 2) {
+    if(this.searchTerm.length <= 1) {
+      this.clearPlayersSearched();
+    } else {
       this.loading = true;
-      this.playerService.getPlayersByName(name).subscribe(resultPlayers => {
+      this.playerService.getPlayersByName(this.searchTerm).subscribe(resultPlayers => {
         this.players = resultPlayers;
         this.loading = false;
       });
@@ -75,7 +35,7 @@ export class SearchPageComponent  implements OnInit {
   }
 
   clearPlayersSearched() {
-    this.players = [];
+    this.players = undefined;
 
     return true;
   }

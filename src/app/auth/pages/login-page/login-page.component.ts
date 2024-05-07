@@ -43,12 +43,12 @@ export class LoginPageComponent  implements OnInit {
     this.formContent = this.navParams.get('formContent');
   }
 
-  async login() {
+  login() {
 
     if(this.loginForm.valid) {
 
-      await this.authService.login(this.loginForm.get('userName')!.value, this.loginForm.get('password')!.value).pipe(
-        catchError(error => {this.errorMessage = error.error.message;return throwError(() => error);})
+      this.authService.login(this.loginForm.get('userName')!.value, this.loginForm.get('password')!.value).pipe(
+        catchError(error => this.errorMessage = error.error.message)
       ).subscribe( () => {
         this.router.navigate(['./user']);
         this.cancel();
@@ -67,19 +67,7 @@ export class LoginPageComponent  implements OnInit {
           passwd: this.registerForm.get('password')!.value
         }).pipe(
           catchError(error => this.errorMessage = error.error.message)
-        ).subscribe(
-          // (response: any) => {
-          //   console.log(response);
-          // },
-          // (error: any) => {
-          //   console.error(error);
-          //   if (error.error && error.error.message) {
-          //     this.errorMessage = error.error.message;
-          //   } else {
-          //     this.errorMessage = 'Error desconocido';
-          //   }
-          // }
-        );
+        ).subscribe();
       } else {
         this.errorMessage = 'Las contraseñas no coinciden';
       }

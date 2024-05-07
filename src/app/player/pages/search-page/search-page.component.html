@@ -2,13 +2,28 @@
 
   <ion-searchbar [debounce]="1000" (ionInput)="searchByName($event)" (ionClear)="clearPlayersSearched()" animated="true" placeholder="Buscar jugadores..."/>
 
-  @if (!loading) {
-    <ion-list>
-      @for(player of players; track $index){
-        <player-search-card [name]="player.nombreCompleto" [imageURL]="player.fotoCabeza" [routerLink]="['player',player.id]" />
+  @if (players !== undefined || searchTerm.length > 1) {
+    @if (!loading) {
+      @if (players?.length !== 0) {
+        <ion-list>
+          @for(player of players; track $index){
+            <player-search-card [name]="player.nombreCompleto" [imageURL]="player.fotoCabeza" [routerLink]="['player',player.id]" />
+          }
+        </ion-list>
+      } @else {
+        <div class="not-found-info">
+          <h1>Vaya...</h1>
+          <p class="secondary-text">No se han encontrado resultados con este termino</p>
+        </div>
       }
-    </ion-list>
+    } @else {
+      <app-loader/>
+    }
   } @else {
-    <app-loader/>
+    <div class="instructions">
+      <img src="../../../../assets/resources/basket-court.png" alt="basket_court">
+      <p class="secondary-text">Para buscar un jugador y sus datos pon su nombr en el buscador de arriba</p>
+    </div>
   }
+
 </ion-content>
