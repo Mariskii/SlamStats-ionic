@@ -7,8 +7,9 @@ import { PlayerTeam } from '../../models/player-team.interface';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { AlertController } from '@ionic/angular';
-import { delay } from 'rxjs';
+import { catchError, delay, throwError } from 'rxjs';
 import { PlayerCache } from '../../models/player-cache.interface';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-player-page',
@@ -18,6 +19,7 @@ import { PlayerCache } from '../../models/player-cache.interface';
 export class PlayerPageComponent  implements OnInit {
 
   loading: boolean = true;
+  errorHapened: boolean = false;
   status: string = 'stats';
 
   isFavorite:boolean = false;
@@ -37,15 +39,7 @@ export class PlayerPageComponent  implements OnInit {
   ngOnInit() {
 
     if(!this.player) {
-      this.activatedRoute.params.subscribe(({id}) => {
-        this.playerService.getPlayerData(id).subscribe((data: PlayerCache) => {
-          this.player = data.player;
-          this.playerTrophies = data.trophies;
-          this.playerStats = data.stats;
-          this.playerTeams = data.teams;
-          this.loading = false;
-        });
-      });
+      this.fetchPlayerData();
     }
   }
 
@@ -82,6 +76,33 @@ export class PlayerPageComponent  implements OnInit {
     } else {
       this.presentAlert('Acción restringida', 'Para añadir un jugador a favoritos debes iniciar sesión');
     }
+  }
+
+  retryFetch() {
+    this.loading=true;
+    this.errorHapened = false;
+    this.fetchPlayerData();
+  }
+
+  fetchPlayerData() {
+    this.activatedRoute.params.subscribe(({id}) => {
+      this.playerService.getPlayerData(id).pipe(
+
+        catchError(err => {
+          this.errorHapened = true;
+          this.loading = false;
+
+          return throwError(() => err);
+        })
+
+      ).subscribe((data: PlayerCache) => {
+        this.player = data.player;
+        this.playerTrophies = data.trophies;
+        this.playerStats = data.stats;
+        this.playerTeams = data.teams;
+        this.loading = false;
+      });
+    });
   }
 
   async presentAlert(alertHeader:string, alertMessage: string) {

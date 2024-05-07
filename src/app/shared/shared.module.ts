@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { AppTabComponent } from './components/app-tab/app-tab.component';
 import { SearchCardComponent } from './components/search-card/search-card.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { RetryButtonComponent } from './components/retry-button/retry-button.component';
 
 
 
@@ -12,6 +13,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     AppTabComponent,
     SearchCardComponent,
     LoaderComponent,
+    RetryButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     AppTabComponent,
     SearchCardComponent,
     LoaderComponent,
+    RetryButtonComponent,
   ]
 })
 export class SharedModule { }

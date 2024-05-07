@@ -3,119 +3,123 @@
 <ion-content>
 
 
-    @if (loading) {
-      <app-loader/>
-    } @else {
-      <div class="player-buttons">
-        <ion-back-button class="back-button" defaultHref="/search"/>
-        <ion-icon (click)="toggleFavorite()" class="star-favorite" size="large" [name]="isFavorite? 'star' : 'star-outline'"/>
-      </div>
-
-      <img [src]="player?.fotoCompleta || '../../../../assets/trophies-icons/anillos.svg'">
-
-      <h2 class="player-name">#{{ player?.dorsal }} {{ player?.nombreCompleto | titlecase }}</h2>
-
-      <ion-grid class="general-info">
-      <ion-row>
-        <ion-col><strong>Posición:</strong></ion-col>
-        <ion-col>{{ player?.posicion }}</ion-col>
-        <ion-col><strong>Nacimiento:</strong></ion-col>
-        <ion-col>{{ player?.fnacimiento | date: "dd/MM/yyyy" }}</ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col><strong>Altura:</strong></ion-col>
-        <ion-col>{{ player?.altura }}Cm</ion-col>
-        <ion-col><strong>Peso:</strong></ion-col>
-        <ion-col>{{ player?.peso }}</ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col><strong>Nacionalidad:</strong></ion-col>
-        <ion-col>{{ player?.nacionalidad }}</ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <div class="trophies">
-      <ion-title><strong>Premios:</strong></ion-title>
-
-      <div class="horizontal-list">
-        @if (playerTrophies?.anillos) {
-          <trophie-component trophieImage="../../../../assets/trophies-icons/anillos.svg" [trophieQuantity]="'x'+playerTrophies?.anillos" />
-        }
-        @if (playerTrophies?.fmvp) {
-          <trophie-component trophieImage="../../../../assets/trophies-icons/fmvp.svg" [trophieQuantity]="'x'+playerTrophies?.fmvp" />
-        }
-        @if (playerTrophies?.mvp) {
-          <trophie-component trophieImage="../../../../assets/trophies-icons/mvp.png" [trophieQuantity]="'x'+playerTrophies?.mvp" />
-        }
-        @if (playerTrophies?.allstar) {
-          <trophie-component trophieImage="../../../../assets/trophies-icons/allStar.svg" [trophieQuantity]="'x'+playerTrophies?.allstar" />
-        }
-        @if (playerTrophies?.dpoy) {
-          <trophie-component trophieImage="../../../../assets/trophies-icons/dpoy.png" [trophieQuantity]="'x'+playerTrophies?.dpoy" />
-        }
-        @if (playerTrophies?.roy) {
-          <trophie-component trophieImage="../../../../assets/trophies-icons/roy.png"/>
-        }
-
-      </div>
-    </div>
-
-    <!--Ion segment-->
-    <ion-segment [(ngModel)]="status" value="stats">
-      <ion-segment-button value="stats">
-        <ion-label>Estadísticas</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="teams">
-        <ion-label>Equipos</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-
-    @switch (status) {
-      @case ('stats') {
-        <div class="stats-section">
-          <div class="stats-header">
-            <ul>
-              <li>Temp</li>
-              <li>PJ</li>
-              <li>PPP</li>
-              <li>TC</li>
-              <li>TL</li>
-              <li>RPP</li>
-              <li>APP</li>
-              <li>STL</li>
-              <li>BPP</li>
-              <li>3PM</li>
-              <li>3PERC</li>
-            </ul>
-          </div>
-          <div class="stats-player">
-            @for (stats of playerStats; track $index) {
-              <ul>
-                <li>{{ stats.season }}</li>
-                <li>{{ stats.pj }}</li>
-                <li>{{ stats.ppp }}</li>
-                <li>{{ stats.tc }}%</li>
-                <li>{{ stats.tl }}%</li>
-                <li>{{ stats.rpp }}</li>
-                <li>{{ stats.app }}</li>
-                <li>{{ stats.stl }}</li>
-                <li>{{ stats.blk }}</li>
-                <li>{{ stats.pm3 }}%</li>
-                <li>{{ stats.perc3 }}%</li>
-              </ul>
-              }
-          </div>
+  @if (loading) {
+    <app-loader/>
+  } @else {
+    @if (!errorHapened) {
+        <div class="player-buttons">
+          <ion-back-button class="back-button" defaultHref="/search"/>
+          <ion-icon (click)="toggleFavorite()" class="star-favorite" size="large" [name]="isFavorite? 'star' : 'star-outline'"/>
         </div>
-      }
-      @case ('teams') {
-        <div class="teams-section">
-          @for (team of playerTeams; track $index) {
-            <player-team-card [teamName]="team.nombreEquipo" [teamLogo]="team.imagenEquipo" />
+
+        <img [src]="player?.fotoCompleta || '../../../../assets/trophies-icons/anillos.svg'">
+
+        <h2 class="player-name">#{{ player?.dorsal }} {{ player?.nombreCompleto | titlecase }}</h2>
+
+        <ion-grid class="general-info">
+        <ion-row>
+          <ion-col><strong>Posición:</strong></ion-col>
+          <ion-col>{{ player?.posicion }}</ion-col>
+          <ion-col><strong>Nacimiento:</strong></ion-col>
+          <ion-col>{{ player?.fnacimiento | date: "dd/MM/yyyy" }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col><strong>Altura:</strong></ion-col>
+          <ion-col>{{ player?.altura }}Cm</ion-col>
+          <ion-col><strong>Peso:</strong></ion-col>
+          <ion-col>{{ player?.peso }}Kg</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col><strong>Nacionalidad:</strong></ion-col>
+          <ion-col>{{ player?.nacionalidad }}</ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div class="trophies">
+        <strong>Premios:</strong>
+
+        <div class="horizontal-list">
+          @if (playerTrophies?.anillos) {
+            <trophie-component trophieImage="../../../../assets/trophies-icons/anillos.svg" [trophieQuantity]="'x'+playerTrophies?.anillos" />
           }
+          @if (playerTrophies?.fmvp) {
+            <trophie-component trophieImage="../../../../assets/trophies-icons/fmvp.svg" [trophieQuantity]="'x'+playerTrophies?.fmvp" />
+          }
+          @if (playerTrophies?.mvp) {
+            <trophie-component trophieImage="../../../../assets/trophies-icons/mvp.png" [trophieQuantity]="'x'+playerTrophies?.mvp" />
+          }
+          @if (playerTrophies?.allstar) {
+            <trophie-component trophieImage="../../../../assets/trophies-icons/allStar.svg" [trophieQuantity]="'x'+playerTrophies?.allstar" />
+          }
+          @if (playerTrophies?.dpoy) {
+            <trophie-component trophieImage="../../../../assets/trophies-icons/dpoy.png" [trophieQuantity]="'x'+playerTrophies?.dpoy" />
+          }
+          @if (playerTrophies?.roy) {
+            <trophie-component trophieImage="../../../../assets/trophies-icons/roy.png"/>
+          }
+
         </div>
+      </div>
+
+      <!--Ion segment-->
+      <ion-segment [(ngModel)]="status" value="stats">
+        <ion-segment-button value="stats">
+          <ion-label>Estadísticas</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="teams">
+          <ion-label>Equipos</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      @switch (status) {
+        @case ('stats') {
+          <div class="stats-section">
+            <div class="stats-header">
+              <ul>
+                <li>Temp</li>
+                <li>PJ</li>
+                <li>PPP</li>
+                <li>TC</li>
+                <li>TL</li>
+                <li>RPP</li>
+                <li>APP</li>
+                <li>STL</li>
+                <li>BPP</li>
+                <li>3PM</li>
+                <li>3PERC</li>
+              </ul>
+            </div>
+            <div class="stats-player">
+              @for (stats of playerStats; track $index) {
+                <ul>
+                  <li>{{ stats.season }}</li>
+                  <li>{{ stats.pj }}</li>
+                  <li>{{ stats.ppp }}</li>
+                  <li>{{ stats.tc }}%</li>
+                  <li>{{ stats.tl }}%</li>
+                  <li>{{ stats.rpp }}</li>
+                  <li>{{ stats.app }}</li>
+                  <li>{{ stats.stl }}</li>
+                  <li>{{ stats.blk }}</li>
+                  <li>{{ stats.pm3 }}</li>
+                  <li>{{ stats.perc3 }}%</li>
+                </ul>
+                }
+            </div>
+          </div>
+        }
+        @case ('teams') {
+          <div class="teams-section">
+            @for (team of playerTeams; track $index) {
+              <player-team-card [teamName]="team.nombreEquipo" [teamLogo]="team.imagenEquipo" />
+            }
+          </div>
+        }
       }
+    }@else {
+      <app-retry-button (click)="retryFetch()"/>
     }
   }
 

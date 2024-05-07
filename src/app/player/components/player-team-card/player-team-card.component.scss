@@ -7,13 +7,14 @@
 
 
   img {
-    max-height: 28vh;
-    max-width: 30vw;
+    height: 20vh;
+    width: 35vw;
     margin: 10px;
   }
 
   h2 {
     text-align: center;
+    text-wrap: wrap;
     align-self: center;
     margin: 10px;
     font-size: 1.5em;
