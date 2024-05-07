@@ -19,7 +19,7 @@
             placeholder="Nombre de usuario"/>
 
           <ion-input
-            id="password"
+            id="passwordLogin"
             formControlName="password"
             errorText="El campo no puede ser vacío"
             label="Contraseña"
@@ -43,7 +43,7 @@
         <form [formGroup]="registerForm" (ngSubmit)="registerAccount()">
 
           <ion-input
-            id="userName"
+            id="userNameRegister"
             type="text"
             formControlName="userName"
             errorText="Debes introducir un nombre de usuario"
@@ -62,7 +62,7 @@
             placeholder="example@gmail.com"/>
 
           <ion-input
-            id="password"
+            id="passwordRegister"
             formControlName="password"
             label="Contraseña"
             type="password"
@@ -77,7 +77,7 @@
           </ion-input>
 
           <ion-input
-            id="password2"
+            id="passwordRegisterRepeat"
             formControlName="password2"
             label="Confirmar contraseña"
             type="password"
