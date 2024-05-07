@@ -2,11 +2,24 @@ ion-card {
   width: 12em;
   height: 12em;
   margin: 5px;
+  background-color: var(--ion-terciary-color);
+  border-radius: 16px;
+
 
   ion-card-header {
-    background: #fff;
+    background: var(--ion-main-color);
     text-align: center;
     width: 100%;
     height: 25%;
+  }
+
+  img {
+    display: block;
+    height: 75%;
+  }
+
+  ion-card-header {
+    color: var(--ion-secondary-text-color);
+    justify-content: center;
   }
 }

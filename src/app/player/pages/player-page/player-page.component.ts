@@ -38,6 +38,9 @@ export class PlayerPageComponent  implements OnInit {
 
   ngOnInit() {
 
+    console.log('init');
+
+
     if(!this.player) {
       this.fetchPlayerData();
     }
@@ -93,6 +96,8 @@ export class PlayerPageComponent  implements OnInit {
 
       if(this.authService.user) {
         this.playerService.isFavoritePlayer(id).subscribe(value => this.isFavorite = value);
+      } else {
+        this.isFavorite = false;
       }
 
       this.playerService.getPlayerData(id).pipe(

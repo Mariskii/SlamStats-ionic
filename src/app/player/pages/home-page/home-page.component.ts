@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 @Component({
   selector: 'app-home-page',
@@ -9,6 +10,14 @@ export class HomePageComponent  implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.splash();
+  }
 
+  async splash() {
+    await SplashScreen.show({
+      showDuration: 2000,
+      autoHide: true,
+    });
+  }
 }
