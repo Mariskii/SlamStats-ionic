@@ -12,18 +12,25 @@
 
     <div class="fav-players">
 
-      <h2 class="fav-players-title">Jugadores favoritos</h2>
+      <div class="fav-players-header">
+        <h2 class="fav-players-title">Jugadores favoritos</h2>
+        <ion-icon name="reload-outline" size="large" (click)="getFavorites()"/>
+      </div>
 
-      @if(!favPlayers) {
-        <p class="no-content-message">No hay jugadores favoritos</p>
+      @if (!loading) {
+        @if(!favPlayers) {
+          <p class="no-content-message">No hay jugadores favoritos</p>
+        } @else {
+
+          <div class="list-players">
+            @for (player of favPlayers; track $index) {
+              <player-search-card [imageURL]="player.fotoCabeza" [name]="player.nombreCompleto"/>
+            }
+          </div>
+
+        }
       } @else {
-
-        <div class="list-players">
-          @for (player of favPlayers; track $index) {
-            <player-search-card [imageURL]="player.fotoCabeza" [name]="player.nombreCompleto"/>
-          }
-        </div>
-
+        <app-loader/>
       }
 
     </div>
