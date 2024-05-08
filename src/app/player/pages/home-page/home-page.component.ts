@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { PlayerPageComponent } from '../player-page/player-page.component';
 import { ModalController } from '@ionic/angular';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'app-home-page',
@@ -10,16 +11,10 @@ import { ModalController } from '@ionic/angular';
 })
 export class HomePageComponent  implements OnInit {
 
-  constructor() { }
+  constructor(
+    private playerService: PlayerService,
+  ) { }
 
   ngOnInit() {
-    this.splash();
-  }
-
-  async splash() {
-    await SplashScreen.show({
-      showDuration: 2000,
-      autoHide: true,
-    });
   }
 }

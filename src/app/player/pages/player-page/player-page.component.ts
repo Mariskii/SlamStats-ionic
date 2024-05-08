@@ -37,10 +37,6 @@ export class PlayerPageComponent  implements OnInit {
   ) {}
 
   ngOnInit() {
-
-    console.log('init');
-
-
     if(!this.player) {
       this.fetchPlayerData();
     }
@@ -48,9 +44,6 @@ export class PlayerPageComponent  implements OnInit {
 
   toggleFavorite() {
     if(this.authService.user) {
-
-      console.log(this.authService.user);
-
 
       if(this.isFavorite) {
 

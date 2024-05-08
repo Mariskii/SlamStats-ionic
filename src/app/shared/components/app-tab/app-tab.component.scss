@@ -1,11 +1,16 @@
 @import url('src/theme/variables.scss');
 
 ion-tab-button {
-  --color: var(--ion-tab-color);
+  --color: white;
   --color-selected: var(--ion-tab-selected);
 }
 
 ion-tab-bar{
   /*Color of selected*/
-  --background: var(--ion-tab-background-color);
+  height: 60px;
+  width: 100%;
+  bottom: 0;
+  --border: 0;
+  --background: linear-gradient(0deg, rgba(0,0,0,0.4) 40%, rgba(0, 0, 0, 0) 80%);
+  position: absolute;
 }

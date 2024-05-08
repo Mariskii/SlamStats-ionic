@@ -1,13 +1,13 @@
-<ion-tabs>
+<ion-tabs #tabs (ionTabsDidChange)="setCurrentTab($event)">
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home">
-      <ion-icon name="Home"></ion-icon>
+      <ion-icon [name]="currentTab === 'home' ? 'home' : 'home-outline'" size="large"></ion-icon>
     </ion-tab-button>
     <ion-tab-button tab="search">
-      <ion-icon name="Search"></ion-icon>
+      <ion-icon [name]="currentTab === 'search' ? 'search' : 'search-outline'" size="large"></ion-icon>
     </ion-tab-button>
     <ion-tab-button tab="user">
-      <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-icon [name]="currentTab === 'user' ? 'person-circle' : 'person-circle-outline'" size="large"></ion-icon>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

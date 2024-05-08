@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-tab',
@@ -7,8 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppTabComponent  implements OnInit {
 
+  //@ViewChild('tabs') tabs!: IonTabs;
+  currentTab: string = 'home';
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
+
+  setCurrentTab(ev: any) {
+    this.currentTab = ev.tab;
+  }
 
 }
