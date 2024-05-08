@@ -50,8 +50,10 @@ export class LoginPageComponent  implements OnInit {
       this.authService.login(this.loginForm.get('userName')!.value, this.loginForm.get('password')!.value).pipe(
         catchError(error => this.errorMessage = error.error.message)
       ).subscribe( () => {
-        this.router.navigate(['./user']);
-        this.cancel();
+        if(this.authService.user) {
+          this.router.navigate(['./user']);
+          this.cancel();
+        }
       });
     }
 
