@@ -36,8 +36,6 @@ export class UserPageComponent  implements OnInit {
   ngOnInit() {
     this.user = this.authService.user;
     this.authService.getFavoritePlayers().subscribe(players => this.favPlayers = players);
-    console.log('init user');
-
   }
 
 }

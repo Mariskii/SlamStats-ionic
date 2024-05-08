@@ -36,12 +36,18 @@
   width: 100%;
   height: auto;
   padding: 5px;
+  text-align: center;
 
   ion-col {
     margin-top: 8px;
     margin-bottom: 8px;
     text-align: justify;
     padding: 5px;
+
+    span {
+      font-size: small;
+      color: var(--ion-secondary-text-color);
+    }
   }
 }
 

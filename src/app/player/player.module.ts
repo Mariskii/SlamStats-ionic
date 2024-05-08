@@ -7,6 +7,7 @@ import {} from 'swiper/element/bundle';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPageModule } from './pages/search-page/search-page.module';
+import { PlayerRoutingModule } from './player-routing.module';
 
 
 
@@ -21,7 +22,8 @@ import { SearchPageModule } from './pages/search-page/search-page.module';
     NgOptimizedImage,
     FormsModule,
     HttpClientModule,
-    SearchPageModule
+    SearchPageModule,
+    PlayerRoutingModule,
     ]
 })
 export class PlayerModule { }

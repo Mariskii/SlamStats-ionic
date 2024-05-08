@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SplashScreen } from '@capacitor/splash-screen';
+import { PlayerPageComponent } from '../player-page/player-page.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home-page',

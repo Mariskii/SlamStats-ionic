@@ -18,22 +18,17 @@
 
         <ion-grid class="general-info">
         <ion-row>
-          <ion-col><strong>Posición:</strong></ion-col>
-          <ion-col>{{ player?.posicion }}</ion-col>
-          <ion-col><strong>Nacimiento:</strong></ion-col>
-          <ion-col>{{ player?.fnacimiento | date: "dd/MM/yyyy" }}</ion-col>
+          <ion-col><strong>Posición: </strong> <span>{{ player?.posicion }}</span> </ion-col>
+          <ion-col><strong>Nacimiento: </strong> <span>{{ player?.fnacimiento | date: "dd/MM/yyyy" }}</span> </ion-col>
         </ion-row>
 
         <ion-row>
-          <ion-col><strong>Altura:</strong></ion-col>
-          <ion-col>{{ player?.altura }}Cm</ion-col>
-          <ion-col><strong>Peso:</strong></ion-col>
-          <ion-col>{{ player?.peso }}Kg</ion-col>
+          <ion-col><strong>Altura: </strong> <span>{{ player?.altura }}Cm</span> </ion-col>
+          <ion-col><strong>Peso: </strong> <span>{{ player?.peso }}Kg</span> </ion-col>
         </ion-row>
 
         <ion-row>
-          <ion-col><strong>Nacionalidad:</strong></ion-col>
-          <ion-col>{{ player?.nacionalidad }}</ion-col>
+          <ion-col><strong>Nacionalidad: </strong> <span>{{ player?.nacionalidad }}</span> </ion-col>
         </ion-row>
       </ion-grid>
 
