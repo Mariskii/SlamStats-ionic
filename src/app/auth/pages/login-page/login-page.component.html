@@ -8,7 +8,7 @@
       @if (formContent === 'login') {
         <h1>Iniciar sesión</h1>
 
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.get('userName')!.value,loginForm.get('password')!.value, this.loginForm)">
           <ion-input
             id="userName"
             formControlName="userName"

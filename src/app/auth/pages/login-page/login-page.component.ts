@@ -43,11 +43,11 @@ export class LoginPageComponent  implements OnInit {
     this.formContent = this.navParams.get('formContent');
   }
 
-  login() {
+  login(username:string, password:string, form:FormGroup) {
 
-    if(this.loginForm.valid) {
+    if(form.valid) {
 
-      this.authService.login(this.loginForm.get('userName')!.value, this.loginForm.get('password')!.value).pipe(
+      this.authService.login(username, password).pipe(
         catchError(error => this.errorMessage = error.error.message)
       ).subscribe( () => {
         if(this.authService.user) {
@@ -69,7 +69,9 @@ export class LoginPageComponent  implements OnInit {
           passwd: this.registerForm.get('password')!.value
         }).pipe(
           catchError(error => this.errorMessage = error.error.message)
-        ).subscribe();
+        ).subscribe(() => {
+          this.login(this.registerForm.get('userName')!.value, this.registerForm.get('password')!.value, this.registerForm);
+        });
       } else {
         this.errorMessage = 'Las contraseñas no coinciden';
       }

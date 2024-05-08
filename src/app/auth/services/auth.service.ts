@@ -29,9 +29,7 @@ export class AuthService {
   }
 
   register (user:UserCreate) {
-    return this.httpClient.post<UserCreate>(`${environment.API_URL}/user/register`, user).pipe(
-      tap(({nombreUsuario,passwd}) => this.login(nombreUsuario,passwd))
-    );
+    return this.httpClient.post<UserCreate>(`${environment.API_URL}/user/register`, user);
   }
 
   logout() {
