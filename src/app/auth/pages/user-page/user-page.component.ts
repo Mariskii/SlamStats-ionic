@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { UserLogged } from '../../models/user.interface';
 import { Player } from 'src/app/player/models/player.interface';
 import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-user-page',
@@ -14,6 +15,7 @@ export class UserPageComponent  implements OnInit  {
   user?:UserLogged;
   favPlayers?:Player[];
   loading:boolean = false;
+  errorHappened:boolean = false;
 
   alertButtons = [
     {
@@ -41,7 +43,14 @@ export class UserPageComponent  implements OnInit  {
 
   getFavorites() {
     this.loading = true;
-    this.authService.getFavoritePlayers().subscribe(players => {
+    this.errorHappened = false;
+    this.authService.getFavoritePlayers().pipe(
+      catchError(error => {
+        this.errorHappened = true;
+        this.loading = false;
+        return throwError(() => error)
+      })
+    ).subscribe(players => {
       this.favPlayers = players
       this.loading = false;
     });

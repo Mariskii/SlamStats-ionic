@@ -18,16 +18,20 @@
       </div>
 
       @if (!loading) {
-        @if(!favPlayers) {
-          <p class="no-content-message">No hay jugadores favoritos</p>
+
+        @if (!errorHappened) {
+          @if(!favPlayers) {
+            <p class="no-content-message">No hay jugadores favoritos</p>
+          } @else {
+
+            <div class="list-players">
+              @for (player of favPlayers; track $index) {
+                <player-search-card [imageURL]="player.fotoCabeza" [name]="player.nombreCompleto"/>
+              }
+            </div>
+          }
         } @else {
-
-          <div class="list-players">
-            @for (player of favPlayers; track $index) {
-              <player-search-card [imageURL]="player.fotoCabeza" [name]="player.nombreCompleto"/>
-            }
-          </div>
-
+          <p class="no-content-message">Ha ocurrido un error inesperado, vuelve a intentarlo</p>
         }
       } @else {
         <app-loader/>
