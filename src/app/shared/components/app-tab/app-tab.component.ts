@@ -7,7 +7,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class AppTabComponent  implements OnInit {
 
-  //@ViewChild('tabs') tabs!: IonTabs;
   currentTab: string = 'home';
 
   constructor() { }

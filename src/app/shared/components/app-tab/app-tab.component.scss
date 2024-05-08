@@ -2,7 +2,13 @@
 
 ion-tab-button {
   --color: white;
-  --color-selected: var(--ion-tab-selected);
+  --ripple-color: transparent;
+  transition: all 0.5s;
+
+  &:active {
+    scale: (1);
+    transform: translateY(4px);
+  }
 }
 
 ion-tab-bar{
