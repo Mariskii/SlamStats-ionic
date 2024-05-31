@@ -8,12 +8,14 @@
     <h1>Pau Gasol</h1>
   </div>
 
-  <h2 class="title">Recomendaciones</h2>
-  <ion-list lines="none" class="horizontal-list">
-    <player-recomendation-card routerLink="/search/player/1"/>
-    <player-recomendation-card routerLink="/search/player/2"/>
-    <player-recomendation-card/>
-    <player-recomendation-card/>
-  </ion-list>
+  <div class="recomendations">
+    <h2 class="title">Recomendaciones</h2>
+    <ion-list lines="none" class="horizontal-list">
+      <player-recomendation-card playerImage="https://cdn.nba.com/headshots/nba/latest/1040x760/893.png" playerName="Michael Jordan" routerLink="/search/player/1"/>
+      <player-recomendation-card playerImage="https://cdn.nba.com/headshots/nba/latest/1040x760/977.png" playerName="Kobe Bryant" routerLink="/search/player/2"/>
+      <player-recomendation-card playerImage="https://cdn.nba.com/headshots/nba/latest/1040x760/947.png" playerName="Allen Iverson" routerLink="/search/player/3"/>
+      <player-recomendation-card playerImage="https://cdn.nba.com/headshots/nba/latest/1040x760/201565.png" playerName="Derrick Rose" routerLink="/search/player/5"/>
+    </ion-list>
+  </div>
 
 </ion-content>

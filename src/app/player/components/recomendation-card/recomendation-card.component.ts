@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'player-recomendation-card',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recomendation-card.component.scss'],
 })
 export class RecomendationCardComponent  implements OnInit {
+
+  @Input() playerName!:string;
+  @Input() playerImage!:string;
 
   constructor() { }
 

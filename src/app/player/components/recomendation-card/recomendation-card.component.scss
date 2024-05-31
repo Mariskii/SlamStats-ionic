@@ -1,6 +1,6 @@
 ion-card {
-  width: 12em;
-  height: 12em;
+  width: 200px;
+  height: 200px;
   margin: 5px;
   background-color: var(--ion-terciary-color);
   border-radius: 16px;
@@ -16,10 +16,13 @@ ion-card {
   img {
     display: block;
     height: 75%;
+    width: 100%;
   }
 
   ion-card-header {
     color: var(--ion-secondary-text-color);
     justify-content: center;
+    height: 25%;
+    text-wrap: wrap;
   }
 }

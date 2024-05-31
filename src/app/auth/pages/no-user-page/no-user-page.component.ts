@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit, Optional } from '@angular/core';
+import { IonRouterOutlet, ModalController, Platform } from '@ionic/angular';
 import { LoginPageComponent } from '../login-page/login-page.component';
+import { App } from '@capacitor/app';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-no-user-page',
@@ -9,9 +11,22 @@ import { LoginPageComponent } from '../login-page/login-page.component';
 })
 export class NoUserPageComponent  implements OnInit {
 
-  constructor(private modalControler:ModalController) { }
+  constructor(
+    private modalControler:ModalController,
+    //private router: Router,
+    //private platform: Platform,
+    @Optional() private routerOutlet?: IonRouterOutlet
+  ) {
+    // this.platform.backButton.subscribeWithPriority(-1, () => {
+    //   if (!this.routerOutlet?.canGoBack()) {
+    //     App.exitApp();
+    //   }
+    // });
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    //this.routerOutletCanGoBack()
+  }
 
   async openModal(formInfo: string) {
     const modal = await this.modalControler.create({
@@ -20,7 +35,17 @@ export class NoUserPageComponent  implements OnInit {
         formContent: formInfo
       }
     });
-
     await modal.present();
   }
+
+  // private routerOutletCanGoBack() {
+  //   // Verificar si hay una página anterior en el historial de navegación
+  //   this.router.navigate(['back'], { skipLocationChange: true }).then(() => {
+  //     const hasPreviousPage = this.router.url !== '/tabs';
+  //     if (!hasPreviousPage) {
+  //       // Si no hay una página anterior en el historial, salir de la aplicación
+  //       App.exitApp();
+  //     }
+  //   });
+  // }
 }
