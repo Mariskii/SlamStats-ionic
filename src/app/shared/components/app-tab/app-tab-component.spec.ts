@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
 
-fdescribe('RecomendationCard', () => {
+describe('RecomendationCard', () => {
   let component: AppTabComponent;
   let fixture: ComponentFixture<AppTabComponent>;
 
