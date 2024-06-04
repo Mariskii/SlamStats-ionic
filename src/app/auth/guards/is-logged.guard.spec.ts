@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 
 import { isLoggedGuard } from './is-logged.guard';
 import { AuthService } from '../services/auth.service';
@@ -30,11 +30,11 @@ describe('isLoggedGuard', () => {
       });
     });
 
-  it('should be created', () => {
-    console.log(executeGuard);
+  it('should be created', async () => {
 
-    const result = isLoggedGuard
+    let mockSnapshot:any = jasmine.createSpyObj<RouterStateSnapshot>("RouterStateSnapshot", ['toString']);
 
+    const result = await TestBed.runInInjectionContext(() => isLoggedGuard(new ActivatedRouteSnapshot(),mockSnapshot));
     console.log(result);
 
 
