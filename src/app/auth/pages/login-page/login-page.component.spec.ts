@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-fdescribe('LoginPageComponent', () => {
+describe('LoginPageComponent', () => {
 
   const MockAuthService = {
     user: {
