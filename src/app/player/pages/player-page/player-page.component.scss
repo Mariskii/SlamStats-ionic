@@ -58,7 +58,7 @@ img {
 }
 
 .trophies {
-  background: var(--ion-secondary-color);
+  background: var(--ion-card-background-color);
   min-height: 15vh;
 
   strong {
@@ -70,7 +70,7 @@ img {
   display: flex;
   overflow-x: auto;
   white-space: nowrap;
-  background: var(--ion-secondary-color);
+  background: var(--ion-card-background-color);
 }
 
 ion-segment {
@@ -142,4 +142,8 @@ ion-segment {
     scale: (0.7);
     transform: translateY(4px);
   }
+}
+
+.player-info-container {
+  border-bottom: 1px solid var(--ion-secondary-text-color);
 }

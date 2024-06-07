@@ -14,9 +14,9 @@
 
         <img [src]="player?.fotoCompleta || '../../../../assets/trophies-icons/anillos.svg'">
 
-        <h2 class="player-name">#{{ player?.dorsal }} {{ player?.nombreCompleto | titlecase }}</h2>
+        <h2 class="player-name player-info-container">#{{ player?.dorsal }} {{ player?.nombreCompleto | titlecase }}</h2>
 
-        <ion-grid class="general-info">
+        <ion-grid class="general-info player-info-container">
         <ion-row>
           <ion-col>Posición: <span>{{ player?.posicion }}</span> </ion-col>
           <ion-col>Nacimiento: <span>{{ player?.fnacimiento | date: "dd/MM/yyyy" }}</span> </ion-col>
@@ -32,7 +32,7 @@
         </ion-row>
       </ion-grid>
 
-      <div class="trophies">
+      <div class="trophies player-info-container">
         <strong>Premios:</strong>
 
         <div class="horizontal-list">
