@@ -65,14 +65,7 @@ const expectedTrophiesResponse = {
   roy:     1,
 };
 
-const exceptPlayerCacheResponse: PlayerCache = {
-  player: responsePlayerData,
-  stats: expectedStatsResponse,
-  teams: expectedTeamsResponse,
-  trophies: expectedTrophiesResponse
-}
-
-fdescribe('PlayerService', () => {
+describe('PlayerService', () => {
   let service: PlayerService;
   let httpMock: HttpTestingController;
 
